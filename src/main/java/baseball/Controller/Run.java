@@ -23,6 +23,7 @@ public class Run {
             result.updateResult(Numbers.randoms, numbers);
             OutputView.printInputResult(result.getResult());
         }
+        OutputView.printGameEnd();
     }
 
     private static int[] translateInputNumbers (String numbers) {

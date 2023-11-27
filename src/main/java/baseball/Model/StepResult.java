@@ -35,7 +35,7 @@ public class StepResult {
         } else if (strike == 0 && ball != 0) {
             return ballMessage;
         } else {
-            return strikeMessage+" "+ballMessage;
+            return ballMessage+" "+strikeMessage;
         }
     }
 
