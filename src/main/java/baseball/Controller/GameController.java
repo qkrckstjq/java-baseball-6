@@ -2,31 +2,31 @@ package baseball.Controller;
 
 import baseball.Model.Service.Numbers;
 import baseball.Model.Domain.StepsResult;
+import baseball.Model.Service.StepsService;
 import baseball.Model.Validation;
 import baseball.View.InputView;
 import baseball.View.OutputView;
 
-public class Run {
-    private static StepsResult result = new StepsResult();
+public class GameController {
     public static void start () {
         OutputView.printStart();
         do {
-            result = new StepsResult();
+            StepsResult result = new StepsResult();
             Numbers.makeRandoms();
-            gameProgress();
+            gameProgress(result);
         } while (restart());
     }
-    private static void gameProgress () {
+    private static void gameProgress (StepsResult result) {
         while(result.getStrike() != 3) {
-            int[] numbers = translateInputNumbers(InputView.printInputNumber());
-            result.updateResult(Numbers.randoms, numbers);
-            OutputView.printInputResult(result.getResult());
+            result = new StepsResult();
+            int[] inputNumbers = translateInputNumbers(InputView.printInputNumber());
+            StepsService.updateResult(result, Numbers.randoms, inputNumbers);
+            OutputView.printInputResult(StepsService.getResult(result));
         }
         OutputView.printGameEnd();
     }
     private static boolean restart () {
-        int inputNumber = translateInputRestart(InputView.printInputRestart());
-        return inputNumber == 1;
+        return translateInputRestart(InputView.printInputRestart()) == 1;
     }
     private static int[] translateInputNumbers (String numbers) {
         String[] temp = Validation.isValidateLength(numbers);
