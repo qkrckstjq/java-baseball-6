@@ -1,4 +1,4 @@
-package baseball.Model;
+package baseball.Model.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,4 @@ public class Numbers {
         }
         return number;
     }
-
-
-
 }
